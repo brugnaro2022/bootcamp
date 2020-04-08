@@ -26,7 +26,7 @@ app.post('/repositories', (request, response) => {
 
 app.put('/repositories/:id', (request, response) => {
   const { id } = request.params
-  
+
   const { title, url, techs } = request.body
 
   const repositoryIndex = repositories.findIndex(
@@ -49,7 +49,7 @@ app.delete('/repositories/:id', (req, res) => {
 })
 
 app.post('/repositories/:id/like', (request, response) => {
-  // TODO
+  const { id, like } = request.params
 })
 
 module.exports = app
