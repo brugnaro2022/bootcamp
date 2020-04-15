@@ -12,9 +12,16 @@ function App () {
     })
   }, [])
 
-  function handleAppProject () {
-    setProjects([...projects, `Novo Projeto ${Date.now()}`])
-    console.log(projects)
+  async function handleAddProject () {
+    // setProjects([...projects, `Novo Projeto ${Date.now()}`])
+    const response = await api.post('projects', {
+      title: `Novo Projeto ${Date.now()}`,
+      owner: 'Marcos'
+    })
+
+    const project = response.data
+
+    setProjects([...projects, project])
   }
 
   return (
@@ -25,7 +32,7 @@ function App () {
           <li key={project.id}>{project.title}</li>
         ))}
       </ul>
-      <button type='button' onClick={handleAppProject}>
+      <button type='button' onClick={handleAddProject}>
         Adicionar Projeto
       </button>
     </>
